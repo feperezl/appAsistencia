@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-row>
+      <ion-row>
+        <ion-card-content>
+          <h1 class="titulo">RegistrApp</h1>
+          <ion-col>
+            <ion-img src="../../../assets/img/alumno.jpg" alt="logo-alumno" width="70%" ></ion-img>
+          </ion-col>
+        </ion-card-content>
+      </ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-title> Hola, {{data.usuario}} </ion-card-title>
+          </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center" size="8">
+        <div>
+
+        </div>
+      </ion-col>
+      <ion-row> 
+        <ion-col size="10">
+          <ion-card>
+
+            <ion-card-header>
+              <ion-card-title> Titulo </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Asignatura 
+              <br>
+              Semestre
+              <br>
+              Profesor
+            </ion-card-content>
+          </ion-card>
+          </ion-col>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="block" shape="round" color="warning"> Editar </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button expand="block" shape="round" color="danger"> Eliminar </ion-button>
+
+          </ion-col>
+        </ion-row>
+      </ion-row>
+    </ion-row>
+  </div>
+</ion-content>

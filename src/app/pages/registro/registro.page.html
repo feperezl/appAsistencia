@@ -1,0 +1,38 @@
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-row>
+      <ion-card-content>
+        <h1 class="titulo">RegistrApp</h1>
+        <ion-col>
+          <ion-img src="../../../assets/img/alumno.jpg" alt="logo-alumno" width="70%" ></ion-img>
+        </ion-col>
+      </ion-card-content>
+    </ion-row>
+
+    <ion-card>
+      <form [formGroup] = "registroForm">
+      <ion-item class="label-container" color="tertiary">  
+      <ion-label position="floating" class="ion-text-center">Usuario</ion-label>
+      <ion-input formControlName="nombre" type="text"></ion-input>
+      </ion-item>
+      <ion-item class="label-container" color="tertiary">  
+        <ion-label position="floating" class="ion-text-center">Contraseña</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <ion-item class="label-container" color="tertiary">  
+          <ion-label position="floating" class="ion-text-center">Repetir contraseña</ion-label>
+          <ion-input formControlName="password-valid" type="password"></ion-input>
+        </ion-item>
+        <ion-item class="label-container" color="tertiary">  
+          <ion-label position="floating" class="ion-text-center">Email</ion-label>
+          <ion-input formControlName="email" type="text"></ion-input>
+        </ion-item>
+      </form>
+    </ion-card>
+    <ion-row class="ion-justify-content-center">
+    <ion-col size="8">
+      <ion-button (click)="registrar()" color="success" expand="block">Registro</ion-button>
+    </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

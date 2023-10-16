@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true">
+  <div> 
+    <ion-row>
+      <ion-card-content>
+        <h1 class="titulo">RegistrApp</h1>
+        <ion-col>
+          <ion-img src="../../../assets/img/alumno.jpg" alt="logo-alumno" width="70%" ></ion-img>
+        </ion-col>
+      </ion-card-content>
+    </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <form [formGroup] = "formularioLogin">
+            <ion-item class="label-container" color="tertiary">  
+            <ion-label position="floating" class="ion-text-center">Usuario</ion-label>
+            <ion-input formControlName="nombre" type="text" [(ngModel)]="user.usuario" ></ion-input>
+            </ion-item>
+            <ion-item class="label-container" color="tertiary">  
+              <ion-label position="floating" class="ion-text-center">Contraseña</ion-label>
+              <ion-input formControlName="password" type="password" [(ngModel)]="user.password" ></ion-input>
+              </ion-item>
+            </form>
+          </ion-card>
+        </ion-col>
+      
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8">
+        <ion-button (click)="login()" color="success" expand="block">Ingresar</ion-button>
+      </ion-col>
+      </ion-row>
+  </div>
+</ion-content>
