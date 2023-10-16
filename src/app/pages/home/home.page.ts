@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { ServiceRestService } from 'src/app/services/service-rest.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,10 @@ export class HomePage {
 
   data: any;
 
-  constructor(private activateRouter: ActivatedRoute, private router: Router) {
+  usuarios: any;
+
+  constructor(private activateRouter: ActivatedRoute, private router: Router, 
+    private api: ServiceRestService, private ToastController: ToastController) {
     this.activateRouter.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation()?.extras.state) {
         this.data = this.router.getCurrentNavigation()?.extras.state?.['user'];
@@ -22,4 +27,14 @@ export class HomePage {
   });
 
 }
-}
+  getLista(){
+    this.api.getLista().subscribe((data) => {
+      console.log(data);
+      this.usuarios = data;
+    })
+  }
+
+  cerrarSesion(){
+    localStorage.removeItem('ingresado');
+    this.router.navigate(['/inicio']);
+}}
