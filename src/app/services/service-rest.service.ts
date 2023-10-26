@@ -13,7 +13,7 @@ export class ServiceRestService {
 
   http = inject(HttpClient)
 
-  URL: string = 'ip api';
+  URL: string = 'http://localhost:8100';
   httpHeader = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -21,14 +21,14 @@ export class ServiceRestService {
     })
 
   };
-
+        //            GET             //
   getLista(): Observable<usuario[]>{
     return this.http.get<usuario[]>(this.URL + '/user').pipe(
       tap((usuario)=> console.log('Usuarios obtenidos')),
       catchError(this.handleError<usuario[]>('getLista', []))
     );
   }
-
+        //            MANEJO DE ERRORES             //
   private handleError<T>(operation = 'operation', result?: T){
     return (error: any): Observable<T> => {
       console.error(error);

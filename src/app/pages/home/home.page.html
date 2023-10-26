@@ -4,7 +4,8 @@
       <h1 class="titulo">RegistrApp</h1>
       <ion-img src="../../../assets/img/alumno.jpg" alt="logo-alumno" width="70%"></ion-img>
       <ion-card>
-        <ion-card-title> Hola, {{data.usuario}} </ion-card-title>
+        <!-- Verifica si data.usuario está definido antes de mostrarlo -->
+        <ion-card-title *ngIf="data"> Hola, {{data.usuario}} </ion-card-title>
       </ion-card>
       <ion-button (click)="cerrarSesion()" color="primary" type="button" shape="round">
         Cerrar Sesión

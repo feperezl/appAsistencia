@@ -15,7 +15,7 @@ export class HomePage {
   usuarios: any;
 
   constructor(private activateRouter: ActivatedRoute, private router: Router, 
-    private api: ServiceRestService, private ToastController: ToastController) {
+    private api: ServiceRestService, private toastController: ToastController ) {
     this.activateRouter.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation()?.extras.state) {
         this.data = this.router.getCurrentNavigation()?.extras.state?.['user'];
@@ -27,6 +27,12 @@ export class HomePage {
   });
 
 }
+
+  ionViewDidEnter(){
+    this.getLista();
+  }
+
+
   getLista(){
     this.api.getLista().subscribe((data) => {
       console.log(data);
