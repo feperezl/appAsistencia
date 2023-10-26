@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, tap, of } from 'rxjs';
-import { usuario } from '../clases/usuario';
+import { Clase } from '../clases/clase';
 
 
 @Injectable({
@@ -21,13 +21,43 @@ export class ServiceRestService {
     })
 
   };
-        //            GET             //
-  getLista(): Observable<usuario[]>{
-    return this.http.get<usuario[]>(this.URL + '/user').pipe(
-      tap((usuario)=> console.log('Usuarios obtenidos')),
-      catchError(this.handleError<usuario[]>('getLista', []))
-    );
+        //            GET     -      OBTENER        //
+getLista(): Observable<Clase[]> {
+  return this.http.get<Clase[]>(this.URL + '/clase').pipe(
+    tap((clases) => console.log('Clases obtenidas')),
+    catchError(this.handleError<Clase[]>('getLista', []))
+  );
+}
+
+          //            ADD       -      AGREGAR      //
+  addClase(clase: Clase): Observable<any>{
+    return this.http.post<Clase>(this.URL + '/clase', clase, this.httpHeader)
+    .pipe(catchError(this.handleError<Clase>('addClase')));
   }
+          //            UPDATE       -     ACTUALIZAR      //
+  updateClase(id: any, clase: Clase): Observable<any>{
+    return this.http.put(this.URL + '/clase/' + id, clase, this.httpHeader).pipe(
+      tap(_ => console.log('Clase actualizada: ${id}')),
+      catchError(this.handleError<any>('updateClase'))
+    )
+  }
+
+          //            UPDATE       -     ACTUALIZAR      //
+  getClase(id: any): Observable<Clase>{
+    return this.http.get<Clase>(this.URL + '/clase/' + id).pipe(
+      tap(_ => console.log('Clase obtenida: ${id}')),
+      catchError(this.handleError<Clase>('getClaseId'))
+    )
+  }
+        //            GET ID       -     OBTENER POR ID      //
+  getClaseId(id: any): Observable<Clase[]>{
+    return this.http.get<Clase[]>(this.URL + '/clase/' + id).pipe(
+      tap(_ => console.log('Clase fetched: ${id}')),
+      catchError(this.handleError<Clase[]>('getClase id=${id}'))
+
+    )
+  }
+
         //            MANEJO DE ERRORES             //
   private handleError<T>(operation = 'operation', result?: T){
     return (error: any): Observable<T> => {

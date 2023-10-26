@@ -1,10 +1,9 @@
 {
-    "user": {
+    "clases": {
         "id": 1,
-        "nombre": "Lionel Messi",
-        "edad": 33,
-        "email": "lionel.messi@ejemplo.com",
-        "telefono": "123456789",
-        "activo": true
+        "nombre": "Calidad de Software",
+        "profesor": "Carlos",
+        "horario": "Vespertino",
+        "qr": "22"
     }
 }
