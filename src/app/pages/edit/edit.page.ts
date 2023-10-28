@@ -19,8 +19,8 @@ export class EditPage implements OnInit {
     qr: ""
   }
   
-  constructor(private activateRoute: ActivatedRoute, private router: Router, private api: 
-    ServiceRestService, private toastController: ToastController ) { }
+  constructor(private activateRouter: ActivatedRoute, private router: Router,
+    private api: ServiceRestService, private toastController: ToastController) { }
 
 
   ngOnInit() {

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LogeadoGuard } from './logeado.guard';
+import { PageProtectedGuard } from './page-protected.guard';
 
-describe('LogeadoGuard', () => {
-  let guard: LogeadoGuard;
+describe('PageProtectedGuard', () => {
+  let guard: PageProtectedGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(LogeadoGuard);
+    guard = TestBed.inject(PageProtectedGuard);
   });
 
   it('should be created', () => {

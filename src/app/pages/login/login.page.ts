@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+import { Storage } from '@capacitor/storage';
+
 
 @Component({
   selector: 'app-login',
@@ -18,14 +20,15 @@ export class LoginPage implements OnInit {
     password: ""
   }
 
-  constructor(public fb: FormBuilder, public navCtrl: NavController, public alertController: AlertController, private router: Router) { 
+  constructor(public fb: FormBuilder, public navCtrl: NavController, public alertController: AlertController, private router: Router, private storage: Storage) { 
     this.formularioLogin = this.fb.group({
       'nombre': new FormControl("", Validators.required),
       'password': new FormControl("", Validators.required),
     });
   }
 
-  ngOnInit() {
+   ngOnInit() {
+
   }
 
   async login(){
@@ -48,7 +51,7 @@ export class LoginPage implements OnInit {
 
     let navigationExtras : NavigationExtras= {
       state:{
-        user: this.user
+        user: this.user.usuario
       }
     }
     

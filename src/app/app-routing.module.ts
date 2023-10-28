@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { LogeadoGuard } from './logeado.guard';
 import { NoLogeadoGuard } from './no-logeado.guard';
+import { PageProtectedGuard } from './guards/page-protected.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },{
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    canActivate : [LogeadoGuard]
+    canActivate : [PageProtectedGuard]
   },
   {
     path: 'inicio',
@@ -31,7 +31,16 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     loadChildren: () => import('./pages/edit/edit.module').then( m => m.EditPageModule),
-    canActivate : [LogeadoGuard]
+    canActivate : [PageProtectedGuard]
+  },
+  {
+    path: 'not-found',
+    loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found',
+    pathMatch: 'full'
   }
 ];
 

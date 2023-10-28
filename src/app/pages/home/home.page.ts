@@ -26,7 +26,8 @@ export class HomePage {
 
   constructor(private activateRouter: ActivatedRoute, private router: Router,
     private api: ServiceRestService, private toastController: ToastController) {
-    this.activateRouter.queryParams.subscribe(params => {
+    
+      this.activateRouter.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation()?.extras.state) {
         this.data = this.router.getCurrentNavigation()?.extras.state?.['user'];
         console.log(this.data)

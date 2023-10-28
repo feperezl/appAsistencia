@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { Observable, tap, of } from 'rxjs';
+import { catchError,tap } from 'rxjs/operators';
+import { Observable,  of } from 'rxjs';
 import { Clase } from '../clases/clase';
 
 
