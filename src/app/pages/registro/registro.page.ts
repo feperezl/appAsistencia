@@ -22,7 +22,6 @@ export class RegistroPage implements OnInit {
   }
 
   ngOnInit(): void {
-    // Your code here
   }
   
 

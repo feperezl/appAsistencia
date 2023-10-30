@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card-content>
+    <h1 class="titulo">RegistrApp</h1>
+    <ion-button (click)="cerrarSesion()" color="primary" shape="round">Cerrar Sesión</ion-button>
+  </ion-card-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registro</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-item class="label-container">  
+              <ion-label position="floating" class="ion-text-center">Asignatura</ion-label>
+              <ion-input type="text" [(ngModel)]="asignatura" ></ion-input>
+            </ion-item>
+            <ion-item class="label-container">  
+              <ion-label position="floating" class="ion-text-center">Sección</ion-label>
+              <ion-input type="text" [(ngModel)]="seccion" ></ion-input>
+            </ion-item>
+            <ion-item class="label-container">  
+              <ion-label position="floating" class="ion-text-center">Carrera</ion-label>
+              <ion-input type="text" [(ngModel)]="carrera" ></ion-input>
+            </ion-item>
+            <ion-item class="label-container">  
+              <ion-label position="floating" class="ion-text-center">Profesor</ion-label>
+              <ion-input type="text" [(ngModel)]="profesor" ></ion-input>
+            </ion-item>
+                      
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+    <ion-button (click)="registrar()" color="success" expand="full" shape="round">Registrar</ion-button>
+  </ion-card>
+</ion-content>

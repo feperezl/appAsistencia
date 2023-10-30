@@ -14,12 +14,7 @@ export class HomePage {
 
   clases: any;
 
-  clase: any = {
-    id: null,
-    nombre: "",
-    asignatura: "",
-    fecha: "",
-    qr: ""
+  alumno: any = {
   }
 
   presentToast: any;
@@ -53,15 +48,15 @@ export class HomePage {
   
   // LIMPIAR CLASES //
   limpiarClase() {
-    this.clase.id = null;
-    this.clase.nombre = "";
-    this.clase.asignatura = "";
-    this.clase.fecha = "";
-    this.clase.qr = "";
+    this.alumno.id = null;
+    this.alumno.nombre = "";
+    this.alumno.asignatura = "";
+    this.alumno.fecha = "";
+    this.alumno.qr = "";
   }
   // AGREGAR CLASES //
   addClase() {
-    if (this.clase.nombre === "" || this.clase.asignatura === "" || this.clase.fecha === "") {
+    if (this.alumno.nombre === "" || this.alumno.asignatura === "" || this.alumno.fecha === "") {
       this.presentToast({
         message: 'Debe llenar todos los campos',
         duration: 2000,
@@ -70,9 +65,9 @@ export class HomePage {
       });
       return;
     } else {
-      this.api.addClase(this.clase).subscribe({
+      this.api.addClase(this.alumno).subscribe({
         next: () => {
-          console.log("Clase agregada: " + this.clase);
+          console.log("Clase agregada: " + this.alumno);
           this.presentToast({
             message: 'Clase creada ',
             duration: 2000,
@@ -91,12 +86,16 @@ export class HomePage {
   getClaseId(id: any) {
     this.api.getClaseId(id).subscribe((data) => {
       console.log(data);
-      this.clase = data;
+      this.alumno = data;
     }
   )}
 
   cerrarSesion() {
     localStorage.removeItem('logeado');
     this.router.navigate(['/inicio']);
+  }
+
+  registrar() {
+    this.router.navigate(['/registro-clase']);
   }
 }

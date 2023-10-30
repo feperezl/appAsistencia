@@ -32,7 +32,12 @@ const routes: Routes = [
     path: 'edit/:id',
     loadChildren: () => import('./pages/edit/edit.module').then( m => m.EditPageModule),
     canActivate : [LogeadoGuard]
+  },
+  {
+    path: 'registro-clase',
+    loadChildren: () => import('./pages/registro-clase/registro-clase.module').then( m => m.RegistroClasePageModule)
   }
+
 ];
 
 @NgModule({
