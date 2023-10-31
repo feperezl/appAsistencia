@@ -1,69 +1,29 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError,tap } from 'rxjs/operators';
-import { Observable,  of } from 'rxjs';
-import { Clase } from '../clases/clase';
-
+import { catchError, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class ServiceRestService {
 
-  http = inject(HttpClient)
+  private URL = 'https://fzidrkjsuztvrwrbfayn.supabase.co/rest/v1/'; 
+  private KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ6aWRya2pzdXp0dnJ3cmJmYXluIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg3MDg0MjQsImV4cCI6MjAxNDI4NDQyNH0.RF7mns34JnVidp_BmKZDuIl_Z8xUDqkBr3fe2pfiZQE'; 
 
-  URL: string = 'http://localhost:8100';
-  httpHeader = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    })
+  constructor(private http: HttpClient) {}
 
-  };
-        //            GET     -      OBTENER        //
-getLista(): Observable<Clase[]> {
-  return this.http.get<Clase[]>(this.URL + '/clase').pipe(
-    tap((clases) => console.log('Clases obtenidas')),
-    catchError(this.handleError<Clase[]>('getLista', []))
-  );
-}
-
-          //            ADD       -      AGREGAR      //
-  addClase(clase: Clase): Observable<any>{
-    return this.http.post<Clase>(this.URL + '/clase', clase, this.httpHeader)
-    .pipe(catchError(this.handleError<Clase>('addClase')));
-  }
-          //            UPDATE       -     ACTUALIZAR      //
-  updateClase(id: any, clase: Clase): Observable<any>{
-    return this.http.put(this.URL + '/clase/' + id, clase, this.httpHeader).pipe(
-      tap(_ => console.log('Clase actualizada: ${id}')),
-      catchError(this.handleError<any>('updateClase'))
-    )
+  private getHeaders(): HttpHeaders {
+    const headers = new HttpHeaders({
+      apikey: this.KEY, 
+    });
+    return headers;
   }
 
-          //            UPDATE       -     ACTUALIZAR      //
-  getClase(id: any): Observable<Clase>{
-    return this.http.get<Clase>(this.URL + '/clase/' + id).pipe(
-      tap(_ => console.log('Clase obtenida: ${id}')),
-      catchError(this.handleError<Clase>('getClaseId'))
-    )
-  }
-        //            GET ID       -     OBTENER POR ID      //
-  getClaseId(id: any): Observable<Clase[]>{
-    return this.http.get<Clase[]>(this.URL + '/clase/' + id).pipe(
-      tap(_ => console.log('Clase fetched: ${id}')),
-      catchError(this.handleError<Clase[]>('getClase id=${id}'))
-
-    )
-  }
-
-        //            MANEJO DE ERRORES             //
-  private handleError<T>(operation = 'operation', result?: T){
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log('${operation} failed: ${error.message}');
-      return of(result as T);
-    }
+  // buscar user x email
+  login(correo: string): Observable<any> {
+    const headers = this.getHeaders();
+    const user = this.http.get(`${this.URL}user?correo=eq.${correo}`, { headers });
+    return user;
   }
 }

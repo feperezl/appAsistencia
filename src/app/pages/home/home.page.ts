@@ -39,18 +39,7 @@ export class HomePage {
 
   }
 
-  ionViewDidEnter() {
-    this.getLista();
-    this.limpiarClase();
-  }
-  
-  // OBTENER CLASES //
-  getLista() {
-    this.api.getLista().subscribe((data) => {
-      console.log(data);
-      this.clases = data;
-    })
-  }
+
   
   // LIMPIAR CLASES //
   limpiarClase() {
@@ -60,41 +49,6 @@ export class HomePage {
     this.clase.fecha = "";
     this.clase.qr = "";
   }
-  // AGREGAR CLASES //
-  addClase() {
-    if (this.clase.nombre === "" || this.clase.asignatura === "" || this.clase.fecha === "") {
-      this.presentToast({
-        message: 'Debe llenar todos los campos',
-        duration: 2000,
-        position: 'middle',
-        icon: 'warning'
-      });
-      return;
-    } else {
-      this.api.addClase(this.clase).subscribe({
-        next: () => {
-          console.log("Clase agregada: " + this.clase);
-          this.presentToast({
-            message: 'Clase creada ',
-            duration: 2000,
-            position: 'middle',
-            icon: 'checkmark-circle-outline'
-          });
-          this.getLista();
-          this.limpiarClase();
-        }
-      });
-    }
-  }
-  
-  // GET CLASES //
-
-  getClaseId(id: any) {
-    this.api.getClaseId(id).subscribe((data) => {
-      console.log(data);
-      this.clase = data;
-    }
-  )}
 
   cerrarSesion() {
     localStorage.removeItem('logeado');

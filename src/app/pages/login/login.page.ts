@@ -1,61 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
-import { Storage } from '@capacitor/storage';
-
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
+import { ServiceRestService } from 'src/app/services/service-rest.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-
-export class LoginPage implements OnInit {
-
+export class LoginPage {
+  user: { correo: string; password: string } = { correo: '', password: '' };
   formularioLogin: FormGroup;
 
-  user={
-    usuario: "",
-    password: ""
-  }
-
-  constructor(public fb: FormBuilder, public navCtrl: NavController, public alertController: AlertController, private router: Router, private storage: Storage) { 
-    this.formularioLogin = this.fb.group({
-      'nombre': new FormControl("", Validators.required),
-      'password': new FormControl("", Validators.required),
+  constructor(
+    private httpClient: HttpClient,
+    private navCtrl: NavController,
+    private serviceRestService: ServiceRestService
+  ) {
+    this.formularioLogin = new FormGroup({
+      correo: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
     });
   }
 
-   ngOnInit() {
+  async login() {
+    if (this.formularioLogin.valid) {
+      const correo = this.formularioLogin.get('correo').value;
+      const password = this.formularioLogin.get('password').value;
 
-  }
-
-  async login(){
-
-    localStorage.setItem('logeado', 'true');
-
-    let formulario = this.formularioLogin.value;
-
-    if (formulario.nombre == "" || formulario.password == "") {
-      const alert = await this.alertController.create({
-        header: 'Error de login',
-        message: 'Por favor, rellene todos los campos.',
-        buttons: ['Reintentar']
-      });
-
-      await alert.present();
-      return;
-
+      this.serviceRestService.login(correo).subscribe(
+        (response) => {
+          if (response && response.token) {
+            // El correo es válido, redirige a la página /home
+            this.navCtrl.navigateRoot('/home');
+          } else {
+            console.log('Correo inválido. Por favor, inténtelo de nuevo.');
+          }
+        },
+        (error) => {
+          console.error('Error en la solicitud: ', error);
+        }
+      );
+    } else {
+      console.log('Por favor, rellene todos los campos del formulario.');
     }
-
-    let navigationExtras : NavigationExtras= {
-      state:{
-        user: this.user.usuario
-      }
-    }
-    
-    this.router.navigate(['/home'], navigationExtras);
-
   }
 }
