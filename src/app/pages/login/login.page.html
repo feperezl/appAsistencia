@@ -14,8 +14,8 @@
         <ion-card>
           <form [formGroup]="formularioLogin">
             <ion-item class="label-container" color="tertiary">
-              <ion-label position="floating" class="ion-text-center">Correo</ion-label>
-              <ion-input formControlName="correo" type="text"></ion-input>
+              <ion-label position="floating" class="ion-text-center">Email</ion-label>
+              <ion-input formControlName="email" type="text"></ion-input>
             </ion-item>
             <ion-item class="label-container" color="tertiary">
               <ion-label position="floating" class="ion-text-center">Contraseña</ion-label>
@@ -27,7 +27,7 @@
     </ion-row>
     <ion-row class="ion-justify-content-center">
       <ion-col size="8">
-        <ion-button (click)="login()" color="success" expand="block">Ingresar</ion-button>
+        <ion-button color="success" expand="full" type="submit">Ingresar</ion-button>
       </ion-col>
     </ion-row>
   </div>
