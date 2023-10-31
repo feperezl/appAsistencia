@@ -28,9 +28,15 @@
     "@capacitor/status-bar": "5.0.6",
     "@ionic-native/core": "^5.36.0",
     "@ionic/angular": "^7.0.0",
+    "@supabase/supabase-js": "^2.38.4",
     "ionicons": "^7.0.0",
+<<<<<<< HEAD
     "rxjs": "^6.5.5",
     "tslib": "^2.3.0",
+=======
+    "rxjs": "~7.8.0",
+    "tslib": "^2.6.2",
+>>>>>>> 88000a2f76fc7a954f1d476ed0ab4cf5ce280d75
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

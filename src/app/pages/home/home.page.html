@@ -12,8 +12,9 @@
     </ion-card-content>
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Ingresar Clase</ion-card-title>
+        <ion-card-title>Menú</ion-card-title>
       </ion-card-header>
+<<<<<<< HEAD
         <ion-item>
           <ion-label position="floating">Nombre Asignatura</ion-label>
           <ion-input [(ngModel)]="clase.nombre" ></ion-input>
@@ -31,42 +32,21 @@
           <ion-input [(ngModel)]="clase.qr"></ion-input>
         </ion-item>
         <!-- <ion-grid>
+=======
+        
+        <ion-grid>
+>>>>>>> 88000a2f76fc7a954f1d476ed0ab4cf5ce280d75
           <ion-row>
             <ion-col size="6">
               <ion-button (click)="limpiarClase()" expand="block" shape="round" color="warning"> Limpiar </ion-button>
             </ion-col>
             <ion-col size="6">
-              <ion-button (click)="addClase()" expand="block" shape="round" color="success"> Agregar</ion-button>
+              <ion-button (click)="registrar()" expand="block" shape="round" color="success">Registrar</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid> -->
     </ion-card>
 
-    <ion-row *ngFor="let c of clases">
-      <ion-col class="ion-text-center">
-        <ion-card>
-          <ion-col size="12">
-            <ion-card-header>
-              <ion-card-title>{{c.nombre}}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-label>Profesor: {{c.profesor}}</ion-label><br>
-              <ion-label>Horario: {{c.horario}}</ion-label><br>
-              <ion-label>QR: {{c.qr}}</ion-label>
-            </ion-card-content>
-          </ion-col>
-          <ion-row>
-            <ion-col size="6">
-              <ion-button expand="block" [routerlink]="['/edit', c.id]" (click)="getId(c.id)" shape="round" color="warning"> Editar </ion-button>
-            </ion-col>
-            <ion-col size="6">
-              <ion-button expand="block" shape="round" color="danger"> Eliminar </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    
  
   </div>
 </ion-content>

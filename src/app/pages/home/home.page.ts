@@ -14,12 +14,7 @@ export class HomePage {
 
   clases: any;
 
-  clase: any = {
-    id: null,
-    nombre: "",
-    asignatura: "",
-    fecha: "",
-    qr: ""
+  alumno: any = {
   }
 
   presentToast: any;
@@ -43,15 +38,19 @@ export class HomePage {
   
   // LIMPIAR CLASES //
   limpiarClase() {
-    this.clase.id = null;
-    this.clase.nombre = "";
-    this.clase.asignatura = "";
-    this.clase.fecha = "";
-    this.clase.qr = "";
+    this.alumno.id = null;
+    this.alumno.nombre = "";
+    this.alumno.asignatura = "";
+    this.alumno.fecha = "";
+    this.alumno.qr = "";
   }
 
   cerrarSesion() {
     localStorage.removeItem('logeado');
     this.router.navigate(['/inicio']);
+  }
+
+  registrar() {
+    this.router.navigate(['/registro-clase']);
   }
 }

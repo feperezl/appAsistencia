@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { AlertController, NavController } from '@ionic/angular';
 import { ServiceRestService } from 'src/app/services/service-rest.service';
 
 @Component({
@@ -9,41 +9,40 @@ import { ServiceRestService } from 'src/app/services/service-rest.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
-  user: { correo: string; password: string } = { correo: '', password: '' };
+export class LoginPage implements OnInit{
+  
   formularioLogin: FormGroup;
 
-  constructor(
-    private httpClient: HttpClient,
-    private navCtrl: NavController,
-    private serviceRestService: ServiceRestService
-  ) {
-    this.formularioLogin = new FormGroup({
-      correo: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+  constructor(public fb: FormBuilder, public alertController: AlertController ) {
+    this.formularioLogin = this.fb.group({
+      "correo": new FormControl('', Validators.required),
+      "password": new FormControl('', Validators.required),
     });
   }
 
-  async login() {
-    if (this.formularioLogin.valid) {
-      const correo = this.formularioLogin.get('correo').value;
-      const password = this.formularioLogin.get('password').value;
+  ngOnInit() {
 
-      this.serviceRestService.login(correo).subscribe(
-        (response) => {
-          if (response && response.token) {
-            // El correo es válido, redirige a la página /home
-            this.navCtrl.navigateRoot('/home');
-          } else {
-            console.log('Correo inválido. Por favor, inténtelo de nuevo.');
-          }
-        },
-        (error) => {
-          console.error('Error en la solicitud: ', error);
-        }
-      );
-    } else {
-      console.log('Por favor, rellene todos los campos del formulario.');
+  }
+
+  async login() {
+    var f = this.formularioLogin.value;
+
+    if(this.formularioLogin.invalid) {
+      const alert = await this.alertController.create({
+        header : 'Datos incorrectos',
+        message: 'Vuelve a a intentarlo',
+        buttons: ['Volver']
+      });
+
+      await alert.present();
+      return;
     }
+
+    var usuario = {
+      correo: f.correo,
+      password: f.password
+    }
+
+    localStorage.setItem('correo',JSON.stringify(usuario));
   }
 }

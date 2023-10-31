@@ -6,6 +6,11 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+<<<<<<< HEAD
+=======
+
+// 
+>>>>>>> 88000a2f76fc7a954f1d476ed0ab4cf5ce280d75
 export class ServiceRestService {
 
   private URL = 'https://fzidrkjsuztvrwrbfayn.supabase.co/rest/v1/'; 

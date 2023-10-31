@@ -31,6 +31,7 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     loadChildren: () => import('./pages/edit/edit.module').then( m => m.EditPageModule),
+<<<<<<< HEAD
     canActivate : [PageProtectedGuard]
   },
   {
@@ -41,7 +42,15 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'not-found',
     pathMatch: 'full'
+=======
+    canActivate : [LogeadoGuard]
+  },
+  {
+    path: 'registro-clase',
+    loadChildren: () => import('./pages/registro-clase/registro-clase.module').then( m => m.RegistroClasePageModule)
+>>>>>>> 88000a2f76fc7a954f1d476ed0ab4cf5ce280d75
   }
+
 ];
 
 @NgModule({
