@@ -29,12 +29,6 @@ const routes: Routes = [
     canActivate : [NoLogeadoGuard]
   },
   {
-    path: 'edit/:id',
-    loadChildren: () => import('./pages/edit/edit.module').then( m => m.EditPageModule),
-<<<<<<< HEAD
-    canActivate : [PageProtectedGuard]
-  },
-  {
     path: 'not-found',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
@@ -42,13 +36,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'not-found',
     pathMatch: 'full'
-=======
-    canActivate : [LogeadoGuard]
-  },
-  {
-    path: 'registro-clase',
-    loadChildren: () => import('./pages/registro-clase/registro-clase.module').then( m => m.RegistroClasePageModule)
->>>>>>> 88000a2f76fc7a954f1d476ed0ab4cf5ce280d75
   }
 
 ];

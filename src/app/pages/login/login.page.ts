@@ -1,48 +1,39 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormControlName } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
+import { createClient } from '@supabase/supabase-js';
+import { Router } from '@angular/router';
 import { ServiceRestService } from 'src/app/services/service-rest.service';
+import { error } from 'console';
+
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit{
-  
+export class LoginPage {
   formularioLogin: FormGroup;
-
-  constructor(public fb: FormBuilder, public alertController: AlertController ) {
-    this.formularioLogin = this.fb.group({
-      "correo": new FormControl('', Validators.required),
-      "password": new FormControl('', Validators.required),
+  router: any;
+  constructor(private serviceRestService: ServiceRestService, private formBuilder: FormBuilder) {
+    this.formularioLogin = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
 
-  ngOnInit() {
-
-  }
-
-  async login() {
-    var f = this.formularioLogin.value;
-
-    if(this.formularioLogin.invalid) {
-      const alert = await this.alertController.create({
-        header : 'Datos incorrectos',
-        message: 'Vuelve a a intentarlo',
-        buttons: ['Volver']
-      });
-
-      await alert.present();
-      return;
-    }
-
-    var usuario = {
-      correo: f.correo,
-      password: f.password
-    }
-
-    localStorage.setItem('correo',JSON.stringify(usuario));
+  buscarUsuarioPorCorreo(correo: string) {
+    this.serviceRestService.login(correo).subscribe(
+      (usuarioEncontrado) => {
+        console.log('Usuario encontrado:', usuarioEncontrado);
+        this.router.navigate(['/inicio']);
+      },
+      (error) => {
+        // Manejar errores, por ejemplo, mostrar un mensaje de error
+        console.error('Error al buscar usuario por correo:', error);
+      }
+    );
   }
 }

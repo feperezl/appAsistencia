@@ -18,7 +18,7 @@ export class HomePage {
   }
 
   presentToast: any;
-
+// 
   constructor(private activateRouter: ActivatedRoute, private router: Router,
     private api: ServiceRestService, private toastController: ToastController) {
     
@@ -36,7 +36,7 @@ export class HomePage {
 
 
   
-  // LIMPIAR CLASES //
+  //LIMPIAR CLASES //
   limpiarClase() {
     this.alumno.id = null;
     this.alumno.nombre = "";
