@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { LayoutPageComponent } from './templates/layout/layout-page/layout-page.component';
+import { LayoutPageComponent } from './templates/layout/layout-page.component';
 import { LoginComponent } from './pages/login/login.component';
 
 
