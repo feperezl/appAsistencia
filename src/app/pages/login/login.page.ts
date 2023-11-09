@@ -2,10 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder, FormControlName } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
-import { createClient } from '@supabase/supabase-js';
 import { Router } from '@angular/router';
 import { ServiceRestService } from 'src/app/services/service-rest.service';
-import { error } from 'console';
+
 
 
 
