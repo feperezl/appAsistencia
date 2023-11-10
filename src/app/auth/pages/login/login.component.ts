@@ -20,7 +20,14 @@ export class LoginComponent implements OnInit {
 
   private subscription: Subscription | undefined;
 
-  constructor(private platform: Platform, private router: Router, private alertController: AlertController, private loadingCtrl: LoadingController, private _authService: AuthService, private _cdr: ChangeDetectorRef) { }
+  constructor (
+      private platform: Platform,
+      private router: Router,
+      private alertController: AlertController,
+      private loadingCtrl: LoadingController,
+      private _authService: AuthService,
+      private _cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
     this.isMobile = this.isMobileDevice();
@@ -35,21 +42,20 @@ export class LoginComponent implements OnInit {
         if (this.role === 'alumno') {
           this.router.navigate(['/alumno']);
         } else if (this.role === 'admin' || this.role === 'profesor') {
-          localStorage.removeItem('token');
+          this.deleteSesion();
           this.mostrarErrorAlert('Como administrador o profesor, debes acceder desde un ordenador.');
           return;
         }
       } else {
         if (this.role === 'alumno') {
-          localStorage.removeItem('token');
+          this.deleteSesion();
           this.mostrarErrorAlert('Como estudiante, debes acceder desde un dispositivo móvil.');
           return;
         } else if (this.role === 'admin' || this.role === 'profesor') {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/profesor']);
         }
       }
     }
-
   }
 
   async login(email: string, password: string) {
@@ -71,8 +77,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('nombre', response[0].nombre);
           localStorage.setItem('tipoUser', response[0].tipoUsuario);
           localStorage.setItem('sesionStart', 'sesionStart');
-
-          this.role = response.tipoUser;
           
           this.typeUser();
           loading.dismiss();
@@ -105,6 +109,13 @@ export class LoginComponent implements OnInit {
 
   isMobileDevice() {
     return this.platform.is('mobile');
+  }
+
+  deleteSesion() {
+    localStorage.removeItem('sesionStart');
+    localStorage.removeItem('tipoUser');
+    localStorage.removeItem('email');
+    localStorage.removeItem('nombre');
   }
 
 }
