@@ -6,12 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { ProfesoresRoutingModule } from './profesores-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './templates/layout/layout.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    LayoutComponent
+    LayoutComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
