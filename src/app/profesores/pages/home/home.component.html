@@ -1,1 +1,38 @@
-<p>home works!</p>
+<ion-content>
+
+<ion-card>
+    <ion-card-header>
+    <ion-card-title>
+        ¡Bienvenido, {{ nombre_usuario }}!
+    </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+    Aquí puedes ver las clases para ti.
+    </ion-card-content>
+</ion-card>
+
+  <div class="card-container">
+    <ion-card *ngFor="let clase of clases">
+      <ion-img class="card-image" [src]="clase.imagen"></ion-img>
+
+      <ion-card-header>
+      <ion-card-title>{{ clase.nombre }}</ion-card-title>
+      <ion-card-subtitle>Profesor: {{ clase.profesor }}</ion-card-subtitle>
+      <ion-card-subtitle>Asignatura: {{ clase.asignatura }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+      <ion-button expand="full" *ngIf="!claseActiva(clase)" (click)="crearClase(clase)">
+        Crear Clase
+      </ion-button>
+
+      <ion-button expand="full" *ngIf="claseActiva(clase)" (click)="finalizarClase()">
+        Finalizar Clase
+      </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
