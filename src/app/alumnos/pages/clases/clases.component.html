@@ -1,0 +1,19 @@
+<ion-content>
+  <div class="margin-top-navbar">
+
+    <div *ngIf="clases">
+    <div class="row m-2">
+        <div class="col-12" *ngFor="let clase of clases">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">{{ clase.nombre }}</h5>
+            <p class="card-text">Profesor: {{ clase.profesor }}</p>
+            <button (click)="buscarAsistencia(clase.id_clase)" class="btn btn-primary">Entrar a Clase</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+  </div>
+</ion-content>

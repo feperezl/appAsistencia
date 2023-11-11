@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit {
     this.subscription = this._authService.login(email).subscribe({
       next: (response: any) => {
         if (response.length !==0 && response[0].password === password) {
+          localStorage.setItem('idUser', response[0].id);
           localStorage.setItem('email', response[0].correo);
           localStorage.setItem('nombre', response[0].nombre);
           localStorage.setItem('tipoUser', response[0].tipoUsuario);
@@ -112,6 +113,7 @@ export class LoginComponent implements OnInit {
   }
 
   deleteSesion() {
+    localStorage.removeItem('idUser');
     localStorage.removeItem('sesionStart');
     localStorage.removeItem('tipoUser');
     localStorage.removeItem('email');
