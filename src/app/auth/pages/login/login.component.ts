@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.isMobile = this.isMobileDevice();
+    this.typeUser();
     this._cdr.detectChanges();
   }
 
