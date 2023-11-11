@@ -8,6 +8,7 @@ import { LayoutComponent } from './templates/layout/layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { ClasesComponent } from './pages/clases/clases.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FooterComponent } from './component/footer/footer.component';
     LayoutComponent,
     HomeComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ClasesComponent
   ],
   imports: [
     CommonModule,
