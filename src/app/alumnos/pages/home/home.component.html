@@ -1,53 +1,52 @@
 <ion-content>
   <div class="margin-top-navbar">
     <ion-card>
-        <ion-card-header>
+      <ion-card-header>
         <ion-card-title>
-            ¡Bienvenido, {{ nombre_usuario }} 📚 !
+          ¡Bienvenido, {{ nombre_usuario }} 📚!
         </ion-card-title>
-        </ion-card-header>
+      </ion-card-header>
 
-        <ion-card-content>
-        Aquí puedes encontrar 
-        </ion-card-content>
+      <ion-card-content>
+        Aquí puedes encontrar todo lo que necesitas acerca de tu asistencia a clases!
+      </ion-card-content>
     </ion-card>
+
     <div class="ion-padding">
       <div class="user-menu">
         <ion-card>
           <ion-card-content text-center>
-            Opciones
+            <h2>Menú</h2>
           </ion-card-content>
-  
-          <ion-row class="ion-justify-content-around">
 
+          <ion-row class="ion-justify-content-around">
             <ion-col class="ion-text-center">
-              <ion-button expand="full">
-                <ion-icon slot="start"></ion-icon>
+              <ion-button expand="full" color="success">
+                <ion-icon name="checkmark-circle" slot="start"></ion-icon>
                 Marcar Asistencia
               </ion-button>
             </ion-col>
-  
+
             <ion-col class="ion-text-center">
-              <ion-button expand="full" >
-                <ion-icon  slot="start"></ion-icon>
+              <ion-button expand="full" color="medium">
+                <ion-icon name="list" slot="start"></ion-icon>
                 Ver Listado
-                <ion-badge color="primary" class="badge"></ion-badge>
+                <ion-badge color="secondary" class="badge"></ion-badge>
               </ion-button>
             </ion-col>
           </ion-row>
-  
-          <ion-row class="ion-justify-content-around">
 
+          <ion-row class="ion-justify-content-around">
             <ion-col class="ion-text-center">
-              <ion-button expand="full">
-                <ion-icon slot="start"></ion-icon>
+              <ion-button expand="full" color="tertiary">
+                <ion-icon name="school" slot="start"></ion-icon>
                 Clases
               </ion-button>
             </ion-col>
-  
+
             <ion-col class="ion-text-center">
-              <ion-button expand="full">
-                <ion-icon  slot="start"></ion-icon>
+              <ion-button expand="full" color="warning">
+                <ion-icon name="time" slot="start"></ion-icon>
                 Horario
               </ion-button>
             </ion-col>
@@ -55,7 +54,5 @@
         </ion-card>
       </div>
     </div>
-
   </div>
 </ion-content>
-
