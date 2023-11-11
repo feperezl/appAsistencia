@@ -109,8 +109,13 @@ export class LoginComponent implements OnInit {
   }
 
   isMobileDevice() {
-    return this.platform.is('mobile');
-  }
+    // return this.platform.is('mobile');
+     
+    if (screen.width < 600) 
+    return true;
+    else 
+    return false;
+   }
 
   deleteSesion() {
     localStorage.removeItem('idUser');
