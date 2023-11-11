@@ -3,17 +3,58 @@
     <ion-card>
         <ion-card-header>
         <ion-card-title>
-            ¡Bienvenido, {{ nombre_usuario }}!
+            ¡Bienvenido, {{ nombre_usuario }} 📚 !
         </ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
-        Aquí puedes ver la información importante para ti.
+        Aquí puedes encontrar 
         </ion-card-content>
     </ion-card>
+    <div class="ion-padding">
+      <div class="user-menu">
+        <ion-card>
+          <ion-card-content text-center>
+            Opciones
+          </ion-card-content>
+  
+          <ion-row class="ion-justify-content-around">
 
-    <ion-button expand="full" >Ingresar a Clase</ion-button>
-    <ion-button expand="full" >Ver Asistencia</ion-button>
+            <ion-col class="ion-text-center">
+              <ion-button expand="full">
+                <ion-icon slot="start"></ion-icon>
+                Marcar Asistencia
+              </ion-button>
+            </ion-col>
+  
+            <ion-col class="ion-text-center">
+              <ion-button expand="full" >
+                <ion-icon  slot="start"></ion-icon>
+                Ver Listado
+                <ion-badge color="primary" class="badge"></ion-badge>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+  
+          <ion-row class="ion-justify-content-around">
+
+            <ion-col class="ion-text-center">
+              <ion-button expand="full">
+                <ion-icon slot="start"></ion-icon>
+                Clases
+              </ion-button>
+            </ion-col>
+  
+            <ion-col class="ion-text-center">
+              <ion-button expand="full">
+                <ion-icon  slot="start"></ion-icon>
+                Horario
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </div>
+    </div>
 
   </div>
 </ion-content>
