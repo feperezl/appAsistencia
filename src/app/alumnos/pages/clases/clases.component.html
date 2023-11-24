@@ -2,17 +2,30 @@
   <div class="margin-top-navbar">
 
     <div *ngIf="clases">
-    <div class="row m-2">
-        <div class="col-12" *ngFor="let clase of clases">
-        <div class="card">
-            <div class="card-body">
-            <h5 class="card-title">{{ clase.asignatura }}</h5>
-            <p class="card-text">Profesor: {{ clase.profesor }}</p>
-            <button (click)="buscarAsistencia(clase.id_clase)" class="btn btn-primary">Entrar a Clase</button>
-            </div>
-        </div>
-        </div>
-    </div>
+      <div class="row m-2">
+          <div class="col-12" *ngFor="let clase of clases">
+          <div class="card">
+              <div class="card-body">
+              <h5 class="card-title">{{ clase.asignatura }}</h5>
+              <p class="card-text">Profesor: {{ clase.profesor }}</p>
+              <button (click)="buscarAsistencia(clase.id_clase)" class="btn btn-primary">Entrar a Clase</button>
+              </div>
+          </div>
+          </div>
+      </div>
+
+      <ion-list *ngIf="scannedResult">
+        <ion-item>
+          <ion-label class="ion-text-wrap">Asignatura: {{ asignatura }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label class="ion-text-wrap">Profesor: {{ profesor }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button expand="full" (click)="ingresarAClase(clase.id_clase)">Entrar</ion-button>
+        </ion-item>
+      </ion-list>
+
     </div>
 
   </div>
