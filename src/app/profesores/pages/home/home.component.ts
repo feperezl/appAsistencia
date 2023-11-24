@@ -10,8 +10,12 @@ export class HomeComponent {
 
   nombre_usuario = localStorage.getItem('nombre');
 
+  QrCode: string = '';
+  qr: { classId: string } = { classId: '' };
+
   clases: any[] = [
     { 
+      id: 1,
       nombre: 'Clase 1',
       profesor: 'Profesor A',
       imagen: 'https://miracomosehace.com/wp-content/uploads/2020/05/Persona-mano-movil-tiene-muchas-aplicaciones.jpg',
@@ -19,6 +23,7 @@ export class HomeComponent {
       creando: false
     },
     { 
+      id: 2,
       nombre: 'Clase 2',
       profesor: 'Profesor B',
       imagen: 'https://static.vecteezy.com/system/resources/previews/005/283/061/non_2x/web-development-concept-in-3d-isometric-design-designer-works-with-code-interface-engineering-programming-settings-and-optimizes-pages-template-with-people-scene-illustration-for-webpage-vector.jpg',
@@ -26,6 +31,7 @@ export class HomeComponent {
       creando: false
     },
     { 
+      id: 3,
       nombre: 'Clase 3',
       profesor: 'Profesor C',
       imagen: 'https://img.freepik.com/vector-premium/aprender-interfaz-ingles-aprender-idioma-concepto-educacion-infografia-escolar_212168-898.jpg?w=360',
@@ -33,6 +39,7 @@ export class HomeComponent {
       creando: false
     },
     { 
+      id: 4,
       nombre: 'Clase 4',
       profesor: 'Profesor D',
       imagen: 'https://i.ytimg.com/vi/A6qSsO2ROTM/maxresdefault.jpg',
@@ -54,6 +61,7 @@ export class HomeComponent {
         .subscribe((data: any) => {
 
             const claseStart = {
+              id: clase.id,
               _id: idClase,
               nombre: clase.nombre,
               profesor: clase.profesor,
@@ -87,10 +95,16 @@ export class HomeComponent {
   }
 
   claseActiva(clase: any) {
-    if (localStorage.getItem('claseStart')) {
-      const classInCourse = localStorage.getItem('claseStart');
+    const classInCourse = localStorage.getItem('claseStart');
+    if (classInCourse) {
       const classData = JSON.parse(classInCourse);
       if (classData.nombre === clase.nombre &&  classData.asignatura === clase.asignatura) {
+        this.QrCode = JSON.stringify({ 
+          _id: classData._id,
+          nombre: classData.nombre,
+          profesor: classData.profesor,
+          asignatura: classData.asignatura,
+        });
         return true;
       } else {
         return false;

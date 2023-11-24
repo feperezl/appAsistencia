@@ -28,6 +28,15 @@
           Crear Clase
         </ion-button>
 
+        <ion-card-content *ngIf="claseActiva(clase)">
+          <qrcode 
+            [qrdata]="QrCode"
+            [width]="1024"
+            [elementType]="'img'"
+            [errorCorrectionLevel]="'L'">
+          </qrcode> 
+        </ion-card-content>
+
         <ion-button expand="full" *ngIf="claseActiva(clase)" (click)="finalizarClase()">
           Finalizar Clase
         </ion-button>
