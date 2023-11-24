@@ -48,6 +48,7 @@ export class ClasesComponent {
       (data) => {
         console.log('Asistencia creada:', data);
         alert('Entraste a la clase');
+        this.router.navigate(['/alumno']);
       },
       (error) => {
         console.error('Error al crear la asistencia:', error);
@@ -99,6 +100,7 @@ export class ClasesComponent {
   }
 
   async startScan() {
+    this.scannedResult = true;
     try {
       const permission = await this.checkPermission();
       if(!permission) {
@@ -114,8 +116,6 @@ export class ClasesComponent {
         this.nombre = resultScan.nombre,
         this.profesor = resultScan.profesor,
         this.asignatura = resultScan.asignatura,
-
-        this.scannedResult = true;
 
         BarcodeScanner.showBackground();
         document.querySelector('body')?.classList.remove('scanner-active');
